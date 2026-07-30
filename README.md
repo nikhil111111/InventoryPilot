@@ -32,3 +32,11 @@ Completed:
 ### Engineering Decision
 
 The backend follows an API-first architecture where Django is responsible only for business logic and REST APIs. React will consume these APIs independently, allowing both applications to evolve separately.
+
+## Backend Setup
+
+- Django REST Framework
+- PostgreSQL
+- Environment variables using python-decouple
+- CORS configured
+- Initial migrations completed
