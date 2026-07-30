@@ -40,3 +40,12 @@ The backend follows an API-first architecture where Django is responsible only f
 - Environment variables using python-decouple
 - CORS configured
 - Initial migrations completed
+
+## Current Features
+
+- Product Management
+- Warehouse Management
+- Inventory Tracking
+- Reorder Dashboard
+- Multi-Warehouse Stock Aggregation
+- Seed Data Command

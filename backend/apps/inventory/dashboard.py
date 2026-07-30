@@ -1,10 +1,10 @@
-from django.db.models import Sum, Prefetch
+from django.db.models import Sum, Prefetch, Q
 
 from apps.products.models import Product
 from apps.inventory.models import Inventory
 
 
-def get_reorder_dashboard():
+def get_reorder_dashboard(search=None):
     products = (
         Product.objects
         .prefetch_related(
@@ -16,8 +16,15 @@ def get_reorder_dashboard():
         .annotate(
             total_stock=Sum("inventory_items__quantity")
         )
-        .order_by("name")
     )
+
+    if search:
+        products = products.filter(
+            Q(name__icontains=search) |
+            Q(sku__icontains=search)
+        )
+
+    products = products.order_by("name")
 
     dashboard = []
 
