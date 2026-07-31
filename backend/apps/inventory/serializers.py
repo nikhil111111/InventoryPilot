@@ -3,9 +3,27 @@ from .models import Inventory
 
 
 class InventorySerializer(serializers.ModelSerializer):
+    product_name = serializers.CharField(
+        source="product.name",
+        read_only=True
+    )
+
+    warehouse_name = serializers.CharField(
+        source="warehouse.name",
+        read_only=True
+    )
+
     class Meta:
         model = Inventory
-        fields = "__all__"
+        fields = [
+            "id",
+            "product",
+            "product_name",
+            "warehouse",
+            "warehouse_name",
+            "quantity",
+            "updated_at",
+        ]
 
     def validate_quantity(self, value):
         if value < 0:

@@ -1,51 +1,163 @@
 # InventoryPilot
 
-InventoryPilot is a full-stack inventory management system that helps businesses monitor inventory across multiple warehouses and generate intelligent reorder recommendations.
+InventoryPilot is a full-stack inventory management system built with Django REST Framework and React. It helps businesses manage products, warehouses, inventory, and identify products that require reordering based on stock thresholds.
+
+## Features
+
+- Product Management (CRUD)
+- Warehouse Management (CRUD)
+- Inventory Management (CRUD)
+- Dashboard with stock overview
+- Low stock detection
+- Urgent reorder identification
+- Product search
+- Warehouse-wise inventory view
+- Loading indicators
+- Responsive UI
+- Toast notifications
 
 ## Tech Stack
+
+### Backend
 
 - Django
 - Django REST Framework
 - PostgreSQL
-- React
+- Python
+
+### Frontend
+
+- React (Vite)
+- Tailwind CSS
 - Axios
+- React Router
+- React Hot Toast
+- React Icons
 
-## Project Status
+## Project Structure
 
-- [x] Repository Initialized
-- [ ] Backend Setup
-- [ ] Database Design
-- [ ] APIs
-- [ ] Frontend
-- [ ] Reorder Engine
-
-## Milestone 2 – Backend Foundation
-
-Completed:
-
-- Created an isolated Python virtual environment.
-- Installed Django and Django REST Framework.
-- Added PostgreSQL database driver.
-- Configured environment variable support using `python-decouple`.
-- Added CORS middleware to enable communication with the React frontend.
-
-### Engineering Decision
-
-The backend follows an API-first architecture where Django is responsible only for business logic and REST APIs. React will consume these APIs independently, allowing both applications to evolve separately.
+```
+InventoryPilot/
+│
+├── backend/
+│   ├── apps/
+│   │   ├── products/
+│   │   ├── warehouses/
+│   │   ├── inventory/
+│   │   └── reorder/
+│   ├── config/
+│   └── manage.py
+│
+├── frontend/
+│   ├── src/
+│   │   ├── api/
+│   │   ├── components/
+│   │   ├── layouts/
+│   │   ├── pages/
+│   │   └── App.jsx
+│   └── package.json
+│
+└── README.md
+```
 
 ## Backend Setup
 
-- Django REST Framework
-- PostgreSQL
-- Environment variables using python-decouple
-- CORS configured
-- Initial migrations completed
+```bash
+cd backend
 
-## Current Features
+python -m venv venv
 
-- Product Management
-- Warehouse Management
-- Inventory Tracking
-- Reorder Dashboard
-- Multi-Warehouse Stock Aggregation
-- Seed Data Command
+# Windows
+venv\Scripts\activate
+
+pip install -r requirements.txt
+
+python manage.py migrate
+
+python manage.py seed_data
+
+python manage.py runserver
+```
+
+## Frontend Setup
+
+```bash
+cd frontend
+
+npm install
+
+npm run dev
+```
+
+## API Endpoints
+
+### Products
+
+| Method | Endpoint |
+|---------|----------|
+| GET | /api/products/ |
+| POST | /api/products/ |
+| PUT | /api/products/{id}/ |
+| DELETE | /api/products/{id}/ |
+
+### Warehouses
+
+| Method | Endpoint |
+|---------|----------|
+| GET | /api/warehouses/ |
+| POST | /api/warehouses/ |
+| PUT | /api/warehouses/{id}/ |
+| DELETE | /api/warehouses/{id}/ |
+
+### Inventory
+
+| Method | Endpoint |
+|---------|----------|
+| GET | /api/inventory/ |
+| POST | /api/inventory/ |
+| PUT | /api/inventory/{id}/ |
+| DELETE | /api/inventory/{id}/ |
+
+### Dashboard
+
+```
+GET /api/dashboard/
+GET /api/dashboard/?search=laptop
+```
+
+## Screenshots
+
+### Dashboard
+
+![Dashboard](screenshots/dashboard.jpeg)
+
+The dashboard provides an overview of inventory levels across warehouses and highlights products that require reordering based on the defined reorder threshold.
+
+---
+
+### Products
+
+![Products](screenshots/products.jpeg)
+
+Manage products by adding, updating, deleting, and searching products. Each product includes SKU, price, reorder threshold, and reorder quantity.
+
+---
+
+### Inventory
+
+![Inventory](screenshots/inventory.jpeg)
+
+Manage inventory for each product across multiple warehouses. Users can update stock quantities while maintaining a unique product-warehouse combination.
+
+## Future Improvements
+
+- Authentication
+- Role-based access
+- Pagination
+- Warehouse filtering
+- Export inventory reports
+- Analytics dashboard
+
+## Author
+
+Nikhil Garg
